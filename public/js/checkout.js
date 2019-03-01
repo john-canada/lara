@@ -1,4 +1,3 @@
-// Create a Stripe client.
 var stripe = Stripe('pk_test_aitLw33AEpi1XOVaKVQZKC5b');
 
 // Create an instance of Elements.
@@ -51,7 +50,6 @@ form.addEventListener('submit', function(event) {
         } else {
             // Send the token to your server.
             stripeTokenHandler(result.token);
-            console.log(result.token);
         }
     });
 });
@@ -65,7 +63,7 @@ function stripeTokenHandler(token) {
     hiddenInput.setAttribute('name', 'stripeToken');
     hiddenInput.setAttribute('value', token.id);
     form.appendChild(hiddenInput);
-
+    alert(token.id);
     // Submit the form
     form.submit();
 }

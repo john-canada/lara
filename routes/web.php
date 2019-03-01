@@ -48,9 +48,9 @@ Route::get('/checkout',[
     'as'=>'checkout',
 ]); 
 
-Route::get('/postcheckout',[
+Route::post('/checkout',[
     'uses'=>'productController@postcheckout',
-    'as'=>'postcheckout',
+    'as'=>'checkout',
 ]); 
 
 Route::get('/reduceByOne/{id}',[

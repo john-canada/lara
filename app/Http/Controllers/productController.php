@@ -2,12 +2,22 @@
 
 namespace App\Http\Controllers;
 use App\product;
-use App\cart;
+use App\Cart;
 use Session;
+use Stripe\Stripe;
+use Stripe\Charge;
+
 use Illuminate\Http\Request;
 
 class productController extends Controller
 {
+
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
+
+
    public function product(){
        $products = product::all();
        return view('pages/shop')->with('products',$products);
@@ -57,10 +67,34 @@ class productController extends Controller
     }
      
     public function postcheckout(Request $request){
-       dd($request);
-     }
-   
 
+      if(!Session::has('cart')){
+        return redirect('/');  
+      }
+            $oldcart = Session::get('cart');
+            $cart = new Cart($oldcart);
+            
+          //  Stripe::setApiKey('sk_test_AOg3ymj6cm7z4FMq6Nuwy4xi');
+            Stripe::setApiKey("sk_test_rfoFsJV1INouU7vDiXqjqkdJ");
+
+              try{
+           
+                    $token = $_POST['stripeToken'];
+                    $charge = Charge::create([
+                        'amount' =>$cart->totalprice * 100 ,
+                        'currency' => 'usd',
+                        'description' => 'Example charge',
+                        'source' => $token,
+                    ]);
+            } catch (\Exception $e){
+                    return redirect()->route('checkout')->with('error', $e->getMessage());
+                }
+
+            Session::forget('cart');  
+            return redirect('/shop')->with('success','Successfully purchased');
+        }
+      
+   
     // reduce cart items by one at a time
 
     public function getreduceByOne($id){
