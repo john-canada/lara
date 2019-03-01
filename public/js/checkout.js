@@ -63,7 +63,7 @@ function stripeTokenHandler(token) {
     hiddenInput.setAttribute('name', 'stripeToken');
     hiddenInput.setAttribute('value', token.id);
     form.appendChild(hiddenInput);
-    alert(token.id);
+    // alert(token.id);
     // Submit the form
     form.submit();
 }

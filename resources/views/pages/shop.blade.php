@@ -2,9 +2,10 @@
 @extends('layouts/app')
 @section('content')
 <h4 style="text-align:center">Shop page</h4>
-  {{-- @if($success->any()) 
-     <div class="alert alert-success">{{$success}}</div>   
-   @endif  --}}
+
+  @if(Session::has('success')) 
+     <div class="alert alert-success">{{__('Successfully Purchase')}}</div>   
+   @endif 
 
 <div class="row">
     @foreach($products as $product)
@@ -23,6 +24,5 @@
     @endforeach          
             
 </div>    
-
 
 @endsection
