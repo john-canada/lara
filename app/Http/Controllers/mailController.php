@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Mail;
+Use App\Mail\sendmail;
 use session;
 use Illuminate\Http\Request;
 
@@ -14,17 +15,16 @@ class mailController extends Controller
     public function send(Request $request){
       
         $this->validate($request,[
-           'name'=>'required',
            'email'=>'required|email',
+           'subject'=>'required',
            'message'=>'required'   
         ]);
 
-Mail::send('mails.message',[
-          'msg'=>$request->message,
-            ], function($mail) use($request){ 
-                $mail->from($request->email,$request->name);
-                $mail->to('canadajun1972@gmail.com')->subject('test');
-            });
-            return redirect()->back()->with('flash_message','Email Sent');
+        $email=$request->email;
+        $subject=$request->subject;
+        $message=$request->message;
+
+Mail::to($email)->send(new sendmail($subject,$message));
+
       }
   }

@@ -7,18 +7,18 @@
         <form method="POST" action="{{route('send')}}">
             {{csrf_field()}} 
           <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" name="name" id="name" aria-describedby="emailHelp" placeholder="Enter name">
-              @if($errors->has('name'))
-                <small style="color:red">{{$errors->first('name')}}</small>
+            <label for="name">Email address</label>
+            <input type="text" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter Email address">
+              @if($errors->has('email'))
+                <small style="color:red">{{$errors->first('email')}}</small>
               @endif
           </div>
 
             <div class="form-group">
-              <label for="Email1">Email address</label>
-              <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-              @if($errors->has('email'))
-              <small style="color:red">{{$errors->first('email')}}</small>
+              <label for="Email1">Subject</label>
+              <input type="text" class="form-control" name="subject" id="subject" aria-describedby="emailHelp" placeholder="Enter Subject">
+              @if($errors->has('subject'))
+              <small style="color:red">{{$errors->first('subject')}}</small>
             @endif
             </div>
 

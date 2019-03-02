@@ -55,6 +55,15 @@
             .StripeElement--webkit-autofill {
             background-color: #fefde5 !important;
             }
+
+        /* google maps  */
+
+         #map {
+        width: 100%;
+        height: 400px;
+        background-color: grey;
+      }
+
     </style>    
 
 </head>
@@ -64,5 +73,9 @@
             @yield('content')
        </div>
        @yield('scripts-stripe')
+
+       <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
+    async defer></script>
+
 </body>
 </html>

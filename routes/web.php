@@ -77,3 +77,11 @@ Route::post('/send',[
     'uses'=>'mailController@send',
     'as'=>'send'
 ]); 
+
+// Route::post('/sendmail',function(\Illuminate\Http\Request $request,\Illuminate\Mail\Mailer $mailer){
+//       $mailer
+//       ->to($request->input('mail'))
+//       ->send(new App\Mail\sendmail($request->input('title')));
+      
+//       return redirect()->back();
+// })->name('sendmail'); 
