@@ -31,8 +31,8 @@
             </div>
             <button type="submit" class="full-width btn btn-primary mb-3">Submit</button>
           </form>
-          @if(Session::has('flash_message'))
-            {{Session::get('flash_message')}}
+          @if(Session::has('message'))
+            {{Session::get('message')}}
           @endif
     </div>
 </div>

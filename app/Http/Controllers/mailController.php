@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class mailController extends Controller
 {
     public function index(){
-      return view('mails/send');  
+      return view('mails/emailform');  
     }
 
     public function send(Request $request){
@@ -25,6 +25,6 @@ class mailController extends Controller
         $message=$request->message;
 
 Mail::to($email)->send(new sendmail($subject,$message));
-
+   return redirect()->route('index')->with('message','Email sent.');
       }
   }
