@@ -1825,6 +1825,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1850,7 +1866,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var vm = this;
-      page_url = page_url || 'api/article';
+      page_url = page_url || 'api/articles';
       fetch(page_url).then(function (res) {
         return res.json();
       }).then(function (res) {
@@ -1868,6 +1884,63 @@ __webpack_require__.r(__webpack_exports__);
         prev_page_url: links.prev
       };
       this.pagination = pagination;
+    },
+    fetchDelete: function fetchDelete(id) {
+      if (confirm('Are you sure ?')) {
+        fetch("api/article/".concat(id), {
+          method: 'delete'
+        }); //    .then(res=>res.JSON())
+        //    .then(res=>{
+
+        this.fetchArticle();
+        alert('article remove'); //   }) 
+        //.catch(err=>console.log(err));
+      }
+    },
+    addArticle: function addArticle() {
+      var _this2 = this;
+
+      if (this.edit === false) {
+        fetch('api/article', {
+          method: 'post',
+          body: JSON.stringify(this.article),
+          headers: {
+            'content-type': 'application/json'
+          }
+        }).then(function (res) {
+          return res.JSON;
+        }).then(function (res) {
+          _this2.article.title = '';
+          _this2.article.body = '';
+          alert("article added");
+
+          _this2.fetchArticle();
+        });
+      } else {
+        //update
+        fetch('api/article', {
+          method: 'put',
+          body: JSON.stringify(this.article),
+          headers: {
+            'content-type': 'application/json'
+          }
+        }).then(function (res) {
+          return res.JSON;
+        }).then(function (res) {
+          _this2.article.title = '';
+          _this2.article.body = '';
+          alert("article updated");
+
+          _this2.fetchArticle();
+        });
+      }
+    },
+    fetchEdit: function fetchEdit(article) {
+      this.edit = true;
+      this.article.id = article.id;
+      this.article.article_id = article.id;
+      this.article.title = article.title;
+      this.article.body = article.body;
     }
   } // end of methods
 
@@ -36965,6 +37038,74 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
+    _c(
+      "form",
+      {
+        staticClass: "mt-5",
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.addArticle($event)
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "form-group " }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.article.title,
+                expression: "article.title"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text", placeholder: "Enter Title" },
+            domProps: { value: _vm.article.title },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.article, "title", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.article.body,
+                expression: "article.body"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { placeholder: "Enter Title" },
+            domProps: { value: _vm.article.body },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.article, "body", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+          [_vm._v("Submit")]
+        )
+      ]
+    ),
+    _vm._v(" "),
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-md-8" }, [
         _c("nav", { attrs: { "aria-label": "Page navigation example" } }, [
@@ -37029,25 +37170,47 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "card card-default" }, [
-          _c("div", { staticClass: "card-header" }, [_vm._v("Articles")]),
+          _c("div", { staticClass: "card-header mb-2" }, [_vm._v("Articles")]),
           _vm._v(" "),
           _c(
             "div",
             { staticClass: "card-body" },
-            [
-              _vm._l(_vm.articles, function(article) {
-                return _c("div", { key: article.id }, [
-                  _c("h4", [_vm._v(_vm._s(article.title))]),
-                  _vm._v(" "),
-                  _c("p", [_vm._v(_vm._s(article.body))])
-                ])
-              }),
-              _vm._v(" "),
-              _c("button", { staticClass: "btn btn-primary" }, [
-                _vm._v("Submit")
+            _vm._l(_vm.articles, function(article) {
+              return _c("div", { key: article.id }, [
+                _c("h4", [_vm._v(_vm._s(article.title))]),
+                _vm._v(" "),
+                _c("p", [_vm._v(_vm._s(article.body))]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger",
+                    on: {
+                      click: function($event) {
+                        return _vm.fetchDelete(article.id)
+                      }
+                    }
+                  },
+                  [_vm._v("Delete")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-warning",
+                    on: {
+                      click: function($event) {
+                        return _vm.fetchEdit(article)
+                      }
+                    }
+                  },
+                  [_vm._v("Edit")]
+                ),
+                _vm._v(" "),
+                _c("hr")
               ])
-            ],
-            2
+            }),
+            0
           )
         ])
       ])

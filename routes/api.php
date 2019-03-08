@@ -21,7 +21,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/article','ArticleController@index');
+Route::get('/articles','ArticleController@index');
+
+Route::get('/article/{id}','ArticleController@show');
+
+Route::post('/article','ArticleController@store');
+
+Route::put('/article','ArticleController@store');
+
+Route::delete('/article/{id}','ArticleController@destroy');
 
 // Route::get('/article', function () {
 //     return ArticleResource::collection(Article::all());
