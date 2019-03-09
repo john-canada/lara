@@ -6,6 +6,8 @@ use App\Cart;
 use Session;
 use Stripe\Stripe;
 use Stripe\Charge;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 
 use Illuminate\Http\Request;
 
@@ -19,8 +21,25 @@ class productController extends Controller
 
 
    public function product(){
-       $products = product::all();
-       return view('pages/shop')->with('products',$products);
+
+      if(!Cache::has('product')){
+         // $products = product::all();
+              $products = product::all()->map(function($product){
+                       return [
+                          'id'=>$product->id,
+                          'image_path'=>$product->image_path, 
+                          'title'=>$product->title,
+                          'description'=>$product->description,
+                          'price'=>$product->price
+                       ];
+                      })->toArray();
+        
+            Cache::put('product',$products);
+              }else{
+          $products = Cache::get('product',product::all());
+          }
+     //  dd($products);
+      return view('pages/shop')->with('products',$products);
    }
 
    public function getcart(){
@@ -56,7 +75,6 @@ class productController extends Controller
       $request->session()->put('cart',$cart);
     // dd($request->session()->get('cart'));
      return redirect('/cart');
-
 }
 
       public function checkout(){
