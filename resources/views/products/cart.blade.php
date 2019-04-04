@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-   <h1>Cart</h1>
+   <h4 style="margin-top:60px;margin-bottom:30px">{{__('Shopping Cart')}}</h4>
    @if(Session::has('cart'))
    <div class="row">
         <div class="col-md-6 col-md-offset-3">
@@ -32,12 +32,12 @@
         </div>   
    </div>  
    <div class="row">
-        <div class="col-md-6">
-            Total Amount: $<strong>{{$totalprice}}</strong>
+        <div class="col-md-6 mt-3">
+            Total Amount: $ <strong style="font-size:20px">{{$totalprice}}</strong>
         </div>    
    </div>  
    <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 mt-2">
             {{-- <a href="{{route('checkout')}}" class="btn btn-success">Check Out</a> --}}
             <a href="{{route('checkout')}}" class="btn btn-success">Check Out</a>
         </div>    

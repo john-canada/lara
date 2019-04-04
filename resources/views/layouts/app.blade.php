@@ -18,6 +18,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -27,6 +28,15 @@
             * The CSS shown here will not be introduced in the Quickstart guide, but shows
             * how you can use CSS to style your Element's container.
             */
+
+            .navbar-nav .nav-link {
+                  text-align:center;
+                }
+
+            .form-control{
+                border: 1px solid #444!important;
+            }
+
             .StripeElement {
             box-sizing: border-box;
 
@@ -34,7 +44,7 @@
 
             padding: 10px 12px;
 
-            border: 1px solid transparent;
+            border: 1px solid #444;
             border-radius: 4px;
             background-color: white;
 
@@ -58,11 +68,15 @@
 
         /* google maps  */
 
-         #map {
+         /* #map {
         width: 100%;
         height: 400px;
         background-color: grey;
-      }
+      } */
+
+      .btn-primary {
+     margin-top: 20px;
+}
 
     </style>    
 
@@ -76,6 +90,12 @@
 
        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
     async defer></script>
+
+     <!--editor library -->
+ <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+ <script>
+     CKEDITOR.replace( 'article-ckeditor' );
+ </script>
 
 </body>
 </html>

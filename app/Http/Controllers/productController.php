@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 use App\product;
+use App\Order;
 use App\Cart;
 use Session;
+use Mail;
+Use App\Mail\sendmail;
+use Auth;
 use Stripe\Stripe;
 use Stripe\Charge;
 use Illuminate\Support\Facades\DB;
@@ -16,7 +20,7 @@ class productController extends Controller
 
   public function __construct()
   {
-      $this->middleware('auth');
+   //   $this->middleware('auth');
   }
 
 
@@ -87,12 +91,11 @@ class productController extends Controller
     public function postcheckout(Request $request){
 
       if(!Session::has('cart')){
-        return redirect('/');  
+        return redirect('/shop');  
       }
             $oldcart = Session::get('cart');
             $cart = new Cart($oldcart);
-            
-          //  Stripe::setApiKey('sk_test_AOg3ymj6cm7z4FMq6Nuwy4xi');
+ 
             Stripe::setApiKey("sk_test_rfoFsJV1INouU7vDiXqjqkdJ");
 
               try{
@@ -101,9 +104,19 @@ class productController extends Controller
                     $charge = Charge::create([
                         'amount' =>$cart->totalprice * 100 ,
                         'currency' => 'usd',
-                        'description' => 'Example charge',
+                        'description' => 'Product charge',
                         'source' => $token,
                     ]);
+                    
+                        $order = new Order();
+                        $order->name=$request->input('name'); 
+                        $order->phone=$request->input('phone');
+                        $order->address=$request->input('address');
+                        $order->cart=serialize($cart); 
+                        $order->payment_id=$charge->id; 
+                        $order->amount=$charge->amount;
+                        Auth::User()->orders()->save($order);  
+                                     
             } catch (\Exception $e){
                     return redirect()->route('checkout')->with('error', $e->getMessage());
                 }
@@ -144,4 +157,5 @@ class productController extends Controller
  }
 
 }
+
 

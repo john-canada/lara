@@ -1,14 +1,14 @@
 <?php
 
 /*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
+    |--------------------------------------------------------------------------
+    | Web Routes
+    |--------------------------------------------------------------------------
+    |
+    | Here is where you can register web routes for your application. These
+    | routes are loaded by the RouteServiceProvider within a group which
+    | contains the "web" middleware group. Now create something great!
+    
 */
 
 Route::get('/', function () {
@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/about',[
-    'uses'=>'pagesController@about',
+    'uses'=>'mailController@index',
     'as'=>'about',
 ]); 
 
@@ -30,7 +30,13 @@ Route::get('/shop',[
     'as'=>'shop',
 ]); 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
+//Auth::routes();
+
+Route::get('home', function () {
+    // Only verified users may enter...
+})->middleware('verified');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/cart',[
@@ -46,11 +52,13 @@ Route::get('/addToCart/{id}',[
 Route::get('/checkout',[
     'uses'=>'productController@checkout',
     'as'=>'checkout',
+    'middleware'=>'auth'
 ]); 
 
 Route::post('/checkout',[
     'uses'=>'productController@postcheckout',
     'as'=>'checkout',
+    'middleware'=>'auth'
 ]); 
 
 Route::get('/reduceByOne/{id}',[
@@ -77,6 +85,28 @@ Route::post('/send',[
     'uses'=>'mailController@send',
     'as'=>'send'
 ]); 
+
+Route::get('/posts',[
+        'uses'=>'PostsController@index',
+        'as'=>'postIndex'
+]);
+
+// Route::get('/create',[
+//     'uses'=>'PostsController@create',
+//     'as'=>'create'
+// ]);
+
+// Route::post('/create',[
+//     'uses'=>'PostsController@store',
+//     'as'=>'create'
+// ]);
+
+// Route::post('/create',[
+//     'uses'=>'PostsController@store',
+//     'as'=>'create'
+// ]);
+
+Route::resource('posts','PostsController');
 
 // Route::post('/sendmail',function(\Illuminate\Http\Request $request,\Illuminate\Mail\Mailer $mailer){
 //       $mailer

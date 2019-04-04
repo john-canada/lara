@@ -18,6 +18,6 @@ class mektest extends TestCase
         //$this->assertTrue(true);
         $r=$this->get('Services');
         $r->assertStatus(200);
-        $->assertSee('about');
+        $r->assertSee('about');
     }
 }

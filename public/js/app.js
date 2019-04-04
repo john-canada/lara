@@ -1841,6 +1841,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1892,8 +1895,8 @@ __webpack_require__.r(__webpack_exports__);
         }); //    .then(res=>res.JSON())
         //    .then(res=>{
 
-        this.fetchArticle();
-        alert('article remove'); //   }) 
+        this.fetchArticle(); //   alert('article remove');
+        //   }) 
         //.catch(err=>console.log(err));
       }
     },
@@ -1911,8 +1914,7 @@ __webpack_require__.r(__webpack_exports__);
           return res.JSON;
         }).then(function (res) {
           _this2.article.title = '';
-          _this2.article.body = '';
-          alert("article added");
+          _this2.article.body = ''; //  alert("article added");
 
           _this2.fetchArticle();
         });
@@ -1928,8 +1930,7 @@ __webpack_require__.r(__webpack_exports__);
           return res.JSON;
         }).then(function (res) {
           _this2.article.title = '';
-          _this2.article.body = '';
-          alert("article updated");
+          _this2.article.body = ''; //  alert("article updated");
 
           _this2.fetchArticle();
         });
@@ -37037,138 +37038,79 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c(
-      "form",
-      {
-        staticClass: "mt-5",
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-            return _vm.addArticle($event)
-          }
-        }
-      },
-      [
-        _c("div", { staticClass: "form-group " }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.article.title,
-                expression: "article.title"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { type: "text", placeholder: "Enter Title" },
-            domProps: { value: _vm.article.title },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.article, "title", $event.target.value)
-              }
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group" }, [
-          _c("textarea", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.article.body,
-                expression: "article.body"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { placeholder: "Enter Title" },
-            domProps: { value: _vm.article.body },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.article, "body", $event.target.value)
-              }
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c(
-          "button",
-          { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-          [_vm._v("Submit")]
-        )
-      ]
-    ),
-    _vm._v(" "),
+  return _c("div", { staticClass: "container mt-5" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-8" }, [
-        _c("nav", { attrs: { "aria-label": "Page navigation example" } }, [
-          _c("ul", { staticClass: "pagination" }, [
-            _c(
-              "li",
-              {
-                staticClass: "page-item",
-                class: [{ disabled: !_vm.pagination.prev_page_url }]
-              },
-              [
-                _c(
-                  "a",
+      _c("div", { staticClass: "col-md-4" }, [
+        _c(
+          "form",
+          {
+            staticClass: "mt-5",
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.addArticle($event)
+              }
+            }
+          },
+          [
+            _c("div", { staticClass: "form-group " }, [
+              _c("input", {
+                directives: [
                   {
-                    staticClass: "page-link",
-                    attrs: { href: "#" },
-                    on: {
-                      click: function($event) {
-                        return _vm.fetchArticle(_vm.pagination.prev_page_url)
-                      }
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.article.title,
+                    expression: "article.title"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", placeholder: "Enter Title" },
+                domProps: { value: _vm.article.title },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
                     }
-                  },
-                  [_vm._v("Previous")]
-                )
-              ]
-            ),
+                    _vm.$set(_vm.article, "title", $event.target.value)
+                  }
+                }
+              })
+            ]),
             _vm._v(" "),
-            _c("li", { staticClass: "page-item disabled" }, [
-              _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
-                _vm._v(
-                  "Page " +
-                    _vm._s(_vm.pagination.current_page) +
-                    " of " +
-                    _vm._s(_vm.pagination.last_page)
-                )
-              ])
+            _c("div", { staticClass: "form-group" }, [
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.article.body,
+                    expression: "article.body"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { placeholder: "Enter Title" },
+                domProps: { value: _vm.article.body },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.article, "body", $event.target.value)
+                  }
+                }
+              })
             ]),
             _vm._v(" "),
             _c(
-              "li",
-              {
-                staticClass: "page-item",
-                class: [{ disabled: !_vm.pagination.next_page_url }]
-              },
-              [
-                _c(
-                  "a",
-                  {
-                    staticClass: "page-link",
-                    attrs: { href: "#" },
-                    on: {
-                      click: function($event) {
-                        return _vm.fetchArticle(_vm.pagination.next_page_url)
-                      }
-                    }
-                  },
-                  [_vm._v("Next")]
-                )
-              ]
+              "button",
+              { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+              [_vm._v("Submit")]
             )
-          ])
-        ]),
-        _vm._v(" "),
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-8" }, [
         _c("div", { staticClass: "card card-default" }, [
           _c("div", { staticClass: "card-header mb-2" }, [_vm._v("Articles")]),
           _vm._v(" "),
@@ -37211,6 +37153,67 @@ var render = function() {
               ])
             }),
             0
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("nav", { attrs: { "aria-label": "Page navigation example" } }, [
+        _c("ul", { staticClass: "pagination mt-2" }, [
+          _c(
+            "li",
+            {
+              staticClass: "page-item",
+              class: [{ disabled: !_vm.pagination.prev_page_url }]
+            },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "page-link",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      return _vm.fetchArticle(_vm.pagination.prev_page_url)
+                    }
+                  }
+                },
+                [_vm._v("Previous")]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("li", { staticClass: "page-item disabled" }, [
+            _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+              _vm._v(
+                "Page " +
+                  _vm._s(_vm.pagination.current_page) +
+                  " of " +
+                  _vm._s(_vm.pagination.last_page)
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              staticClass: "page-item",
+              class: [{ disabled: !_vm.pagination.next_page_url }]
+            },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "page-link",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      return _vm.fetchArticle(_vm.pagination.next_page_url)
+                    }
+                  }
+                },
+                [_vm._v("Next")]
+              )
+            ]
           )
         ])
       ])

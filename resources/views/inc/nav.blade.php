@@ -12,13 +12,20 @@
                       <div class="collapse navbar-collapse" id="navbarSupportedContent">
                           <!-- Left Side Of Navbar -->
                           <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active">
-                              <a class="nav-link" href="{{route('about')}}">About<span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item">
-                              <a class="nav-link" href="{{route('services')}}">Services</a>
-                            </li>
-                
+                          
+                                <li class="nav-item active">
+                                <a class="nav-link" href="{{route('about')}}">About<span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/posts">Blog</a>
+                                </li>
+                              @guest
+                              @else
+                               <li class="nav-item">
+                                    <a class="nav-link" href="/posts/create">create post</a>
+                                </li>
+                              @endguest   
+                    
                             <li class="nav-item">
                                  <a class="nav-link" href="{{route('shop')}}">Shop</a>
                              </li>
@@ -27,8 +34,8 @@
            
                           <ul class="navbar-nav mr-0">
                               <li class="nav-item dropdown">
-                                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      CRM
+                                      <a class="nav-link dropdown-toggle fas fa-user-friends" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      Customer management
                                       </a>
                                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                       <a class="dropdown-item" href="#">Leads</a>
@@ -57,7 +64,7 @@
                                   <li class="nav-item dropdown">
 
   
-                                      <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                      <a id="navbarDropdown" class="nav-link dropdown-toggle far fa-user" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                           {{ Auth::user()->name }} <span class="caret"></span>
                                       </a>
       
@@ -77,7 +84,7 @@
                           </ul>
                           <ul class="navbar-nav mr-auto">
                                 <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('cart') }}">{{ __('Cart') }}<span class="badge" style="background:orange">{{Session::has('cart')? Session::get('cart')->totalQTY : ''}}</span></a>
+                                        <a class="nav-link fas fa-cart-plus" href="{{ route('cart') }}">{{ __('') }}<span class="badge" style="background:orange">{{Session::has('cart')? Session::get('cart')->totalQTY : ''}}</span></a>
                                  </li>
                           </ul>
                       </div>

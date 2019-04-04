@@ -1,29 +1,25 @@
 <template>
-    <div class="container">
-
-<form class="mt-5" @submit.prevent="addArticle">
-  <div class="form-group ">    
-    <input type="text" v-model="article.title" class="form-control" placeholder="Enter Title">
-  </div>
-
-  <div class="form-group">
-    <textarea class="form-control" placeholder="Enter Title" v-model="article.body"></textarea>
-  </div>
-
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-
-
+    <div class="container mt-5">
         <div class="row justify-content-center">
-            <div class="col-md-8">
-                <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li v-bind:class="[{disabled:!pagination.prev_page_url}]" class="page-item"><a class="page-link" href="#" @click="fetchArticle(pagination.prev_page_url)">Previous</a></li>
-                    <li class="page-item disabled"><a class="page-link" href="#">Page {{pagination.current_page}} of {{pagination.last_page}}</a></li>
-                    <li v-bind:class="[{disabled:!pagination.next_page_url}]" class="page-item"><a class="page-link" href="#" @click="fetchArticle(pagination.next_page_url)">Next</a></li>
-                </ul>
-                </nav>
+                <div class="col-md-4">
+                        <form class="mt-5" @submit.prevent="addArticle">
+                        <div class="form-group ">    
+                            <input type="text" v-model="article.title" class="form-control" placeholder="Enter Title">
+                        </div>
 
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Enter Title" v-model="article.body"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                        <!-- <div class="fb mt-5">
+                            <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FLandAsia.Ph%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=181131025808621" width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                        </div> -->
+                </div>
+
+            <div class="col-md-8">
+            
                 <div class="card card-default">
                     <div class="card-header mb-2">Articles</div>
                     <div class="card-body">
@@ -38,6 +34,13 @@
                     </div>
                 </div>
             </div>
+                <nav aria-label="Page navigation example">
+                <ul class="pagination mt-2">
+                    <li v-bind:class="[{disabled:!pagination.prev_page_url}]" class="page-item"><a class="page-link" href="#" @click="fetchArticle(pagination.prev_page_url)">Previous</a></li>
+                    <li class="page-item disabled"><a class="page-link" href="#">Page {{pagination.current_page}} of {{pagination.last_page}}</a></li>
+                    <li v-bind:class="[{disabled:!pagination.next_page_url}]" class="page-item"><a class="page-link" href="#" @click="fetchArticle(pagination.next_page_url)">Next</a></li>
+                </ul>
+                </nav>
         </div>
     </div>
 </template>
@@ -94,7 +97,7 @@
                     //    .then(res=>res.JSON())
                     //    .then(res=>{
                            this.fetchArticle();
-                           alert('article remove');
+                        //   alert('article remove');
                         //   }) 
                        //.catch(err=>console.log(err));
                     } 
@@ -113,7 +116,7 @@
                    .then(res=>{
                         this.article.title='';
                         this.article.body='';
-                        alert("article added");
+                      //  alert("article added");
                         this.fetchArticle();
                    });
               
@@ -130,7 +133,7 @@
                    .then(res=>{
                         this.article.title='';
                         this.article.body='';
-                        alert("article updated");
+                      //  alert("article updated");
                         this.fetchArticle();
                    });
 

@@ -1,10 +1,10 @@
-@extends('layouts/master')
+@extends('layouts/app')
 @section('content')
 
 
 <div class="row">
     <div class="col-md-6 offset-md-3">  
-      <h4>{{ __('Contact us') }}</h4>
+      <h4 style="margin-top:60px;margin-bottom:20px">{{ __('Contact us') }}</h4>
 
       <form method="POST" action="{{url('sendmail')}}">
           {{csrf_field()}} 

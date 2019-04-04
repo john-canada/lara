@@ -14,7 +14,7 @@ class productTableSeeder extends Seeder
     {
         $product = new App\Product([
             'image_path'=>'/storage/images/ava4.jpg',
-            'title'=>'Harry Potter Book 1',
+            'title'=>'Harry Potter Book 4',
             'description'=>'Cool Harry Potter Book 1 series',
             'price'=>40,
         ]);
@@ -22,7 +22,7 @@ class productTableSeeder extends Seeder
    
         $product = new App\Product([
            'image_path'=>'/storage/images/ava5.jpg',
-           'title'=>'Harry Potter Book 2',
+           'title'=>'Harry Potter Book 5',
            'description'=>'Cool Harry Potter Book 2 series',
            'price'=>50,
        ]);
@@ -30,7 +30,7 @@ class productTableSeeder extends Seeder
    
        $product = new App\Product([
            'image_path'=>'/storage/images/ava3.jpg',
-           'title'=>'Harry Potter Book 3',
+           'title'=>'Harry Potter Book 6',
            'description'=>'Cool Harry Potter Book 3 series',
            'price'=>30,
        ]);

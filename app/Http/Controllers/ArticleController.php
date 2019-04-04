@@ -14,7 +14,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $article = Article::orderBy('created_at','desc')->paginate(5);
+        $article = Article::orderBy('created_at','desc')->paginate(2);
         return ArticleResource::collection($article);
     }
 

@@ -1,7 +1,7 @@
 
 @extends('layouts/app')
 @section('content')
-<h4 style="text-align:center">Shop page</h4>
+<h2 style="text-align:center;margin-top:50px;margin-bottom:40px ">{{__('Book Shopping')}}</h2>
 
   @if(Session::has('success')) 
      <div class="alert alert-success">{{__('Successfully Purchase')}}</div>   
@@ -15,8 +15,8 @@
                     <div class="card-body">
                       <h5 class="card-title">{{$product['title']}}</h5>
                       <p class="card-text">{{$product['description']}}</p>
-                      <h4 style="text-align:center"><b>{{$product['price']}}</b></h4>
-                      <a href="{{route('addToCart',['id'=>$product['id']])}}" class="btn btn-primary pull-right" style="margin:auto">Add to Cart</a>
+                      <h4 style="text-align:center"><small>$ </small><b>{{$product['price']}}</b></h4>
+                      <a href="{{route('addToCart',['id'=>$product['id']])}}" class="btn btn-primary btn-block" style="margin:auto">Add to Cart</a>
                     </div>
                   </div>
        </div>    

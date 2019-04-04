@@ -13,6 +13,8 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
+        "laravelcollective/html": "^5.7",
+        "unisharp/laravel-ckeditor": "^4.7",
         "stripe/stripe-php": "^6.30"
     },
     "require-dev": {
