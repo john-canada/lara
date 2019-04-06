@@ -4,7 +4,8 @@
 <div class="row">
     
   <div class="col-md-4 offset-md-4 mt-3">
-         <h4> Total amout: ${{$totalprice}}</h4>
+        <h2 style="margin-top:40px;margin-bottom:40px;">Check out page</h2>
+        
          @if($errors->any())
              <div id="charge-error" class="alert alert-danger {{!Session::has('error')? 'hidden':''}}">
                  {{Session::get('error')}}
@@ -34,7 +35,7 @@
              <!-- Used to display form errors. -->
              <div id="card-errors" role="alert"></div>
            </div>
-         
+           <h4 style="margin-top:20px; margin-bottom:20px"> Total amout: ${{$totalprice}}</h4> 
            <button class="btn btn-primary">Submit Payment</button>
          </form>
 

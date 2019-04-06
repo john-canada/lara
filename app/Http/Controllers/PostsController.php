@@ -127,26 +127,28 @@ class PostsController extends Controller
         $this->validate($request,[
             'title'=>'required',
             'body' =>'required', 
+            'image'=>'image|nullable|max:1999' 
            ]);
         
     //handle file upload
-    if($request->hasfile('images')){
+    if($request->hasfile('image')){
         //get file name
-        $fileNameWithExt=$request->file('images')->getClientOriginalName();
+        $fileNameWithExt=$request->file('image')->getClientOriginalName();
         $fileName=pathinfo($fileNameWithExt,PATHINFO_FILENAME);
         // get file extension
-        $extention=$request->file('images')->getClientOriginalExtension();
+        $extention=$request->file('image')->getClientOriginalExtension();
         $fileNameToStore= $fileName.'_'.time().'.'.$extention; 
+     
         //upload image
-        $path=$request->file('images')->storeAs('public/images',$fileNameToStore);
+        $path=$request->file('image')->storeAs('public/images',$fileNameToStore);
     }
 
-           // create posts
+           // update posts
            $post=Post::find($id);
            $post->title=$request->input('title');
            $post->body=$request->input('body');
-           if($request->hasfile('images')){
-             $post->cover_image=$fileNameToStore;
+           if($request->hasfile('image')){
+             $post->images=$fileNameToStore;
            }
            $post->save();
 
@@ -166,8 +168,8 @@ class PostsController extends Controller
             return redirect('/posts')->with('error','Unauthorised page');
          }
 
-        if($post->cover_image != 'noimage.jpg'){
-            Storage::delete('public/images/'.$post->cover_image);
+        if($post->image != 'noimage.jpg'){
+            Storage::delete('public/images/'.$post->images);
         }
 
         $post->delete();

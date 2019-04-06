@@ -3,7 +3,7 @@
                    
                   <div class="container">
                       <a class="navbar-brand" href="{{ url('/') }}">
-                          {{ config('app.name', 'Laravel') }}
+                          {{ __('API') }}
                       </a>
                       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                           <span class="navbar-toggler-icon"></span>
@@ -14,20 +14,19 @@
                           <ul class="navbar-nav mr-auto">
                           
                                 <li class="nav-item active">
-                                <a class="nav-link" href="{{route('about')}}">About<span class="sr-only">(current)</span></a>
+                                <a class="nav-link" href="{{route('about')}}">about<span class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/posts">Blog</a>
+                                    <a class="nav-link" href="/posts">blog</a>
                                 </li>
-                              @guest
-                              @else
+                             @if(!auth::guest())
                                <li class="nav-item">
                                     <a class="nav-link" href="/posts/create">create post</a>
                                 </li>
                               @endguest   
                     
                             <li class="nav-item">
-                                 <a class="nav-link" href="{{route('shop')}}">Shop</a>
+                                 <a class="nav-link" href="{{route('shop')}}">shopping</a>
                              </li>
                           
                           </ul>
