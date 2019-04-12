@@ -22,7 +22,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
     <style>
                     /**
             * The CSS shown here will not be introduced in the Quickstart guide, but shows
@@ -79,7 +79,7 @@
 }
 
     </style>    
-
+ @yield('stylesheet')
 </head>
 <body>
         @include('inc/nav')
@@ -91,11 +91,11 @@
        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
     async defer></script>
 
-     <!--editor library -->
+     <!--ckeditor library -->
  <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
  <script>
      CKEDITOR.replace( 'article-ckeditor' );
  </script>
-
+    @yield('script')
 </body>
 </html>

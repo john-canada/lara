@@ -91,27 +91,25 @@ Route::get('/posts',[
         'as'=>'postIndex'
 ]);
 
-// Route::get('/create',[
-//     'uses'=>'PostsController@create',
-//     'as'=>'create'
-// ]);
-
-// Route::post('/create',[
-//     'uses'=>'PostsController@store',
-//     'as'=>'create'
-// ]);
-
-// Route::post('/create',[
-//     'uses'=>'PostsController@store',
-//     'as'=>'create'
-// ]);
-
 Route::resource('posts','PostsController');
+//Route::resource('Comment','CommentsController');
 
-// Route::post('/sendmail',function(\Illuminate\Http\Request $request,\Illuminate\Mail\Mailer $mailer){
-//       $mailer
-//       ->to($request->input('mail'))
-//       ->send(new App\Mail\sendmail($request->input('title')));
-      
-//       return redirect()->back();
-// })->name('sendmail'); 
+Route::get('/commentindex/{id}',[
+    'uses'=>'CommentsController@index',
+    'as'=>'commentindex'
+]);
+
+Route::post('/postcomment/{post_id}',[
+    'uses'=>'CommentsController@store',
+    'as'=>'postcomment'
+]);
+
+Route::post('/category',[
+    'uses'=>'CategoryController@store',
+    'as'=>'category'
+]);
+
+Route::get('/category',[
+    'uses'=>'CategoryController@index',
+    'as'=>'category'
+]);

@@ -12,8 +12,13 @@
                     <div class="col-md-10 col-sm-10">
                         <h3><a href="/posts/{{$post->id}}">{{$post->title}}</a></h3>
                         <small>Posted on: {{$post->created_at}} by {{$post->user->name}}</small>
-                        <p>{!!$post->body!!}</p>
+                        <p>{!!Str_limit($post->body, $limit = 400, $end = '...')!!}</p>
+                        
+                        <div class="comments">
+                                <h6>{{__('Comments')}}( {{$post->comments->count()}} )</h6>
+                           </div> 
                     </div> 
+                      
                 </div>                    
             </div>    
             <hr>

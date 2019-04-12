@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Post;
+use App\Category;
+use App\Comment;
+use App\Tag;
+use Session;
 use DB;//optional;
 
 class PostsController extends Controller
@@ -20,7 +24,6 @@ class PostsController extends Controller
         $this->middleware('auth',['except'=>['index','show']]);
     }
 
-
     /**
      * Display a listing of the resource.
      *
@@ -29,10 +32,11 @@ class PostsController extends Controller
     public function index()
     {
       //$post=post::all()
-    // $post=DB::select('select * from post');
+      //$post=DB::select('select * from post');
       //$posts=Post::where('title','post one')->get();
       //$posts=Post::orderBy('title','asc')->get();
       // $posts=Post::orderBy('title','asc')->take(2)->get();
+      
       $posts=Post::orderBy('created_at','desc')->paginate(2);
        return view('blog.index')->with('posts',$posts); 
     }
@@ -44,7 +48,9 @@ class PostsController extends Controller
      */
     public function create()
     {
-       return view('blog/create');
+       $categories = Category::all();  
+        $tags=Tag::all();
+       return view('blog/create')->with(['categories'=>$categories,'tags'=>$tags]);
     }
 
     /**
@@ -55,9 +61,11 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request,[
             'title'=>'required',
             'body' =>'required',
+            'category_id'=>'required',
             'image'=>'image|nullable|max:1999' 
            ]);
         
@@ -79,12 +87,13 @@ class PostsController extends Controller
 
            // create posts
            $post= new Post;
-           $post->title=$request->input('title');
-           $post->body=$request->input('body');
+           $post->title=$request->title;
+           $post->body=$request->body;
+           $post->category_id=$request->category_id;
            $post->user_id=auth()->user()->id; 
            $post->images=$fileNameToStore;
            $post->save();
-
+           $post->tags()->sync($request->tags,false);
            return redirect('/posts')->with('success','Post Created');
     }
 
@@ -97,7 +106,8 @@ class PostsController extends Controller
     public function show($id)
     {
        $post=Post::find($id);
-        return view('blog/show')->with('post',$post);
+       $category = Category::find($post->category_id);
+       return view('blog/show')->with(['post'=>$post,'category'=>$category]);
     }
 
     /**
