@@ -13,7 +13,8 @@
    <small>Posted on : {{$post->created_at}}  by {{$post->user->name}}</small>
    <div>{!!$post->body!!}</div>
   
-   <h6>Category : {{ $category->name }}</h6> 
+   <h6>Category : {{ $category->name }}</h6>  
+ 
    
 <hr>
     <h4>{{__('Comments')}}</h4>

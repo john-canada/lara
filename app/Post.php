@@ -20,8 +20,8 @@ class Post extends Model
       return $this->belongsTo('App\User');
     }
 
-    public function categories(){
-      return $this->belongsTo(Category::class);
+    public function category(){
+      return $this->belongsTo('App\Category');
     }
 
     public function comments(){

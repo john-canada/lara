@@ -96,6 +96,10 @@
  <script>
      CKEDITOR.replace( 'article-ckeditor' );
  </script>
+ <hr>
+ <footer  style="text-align:center">
+     {{__('Copyright 2019 by John Canada - All rights reserved')}}
+ </footer>    
     @yield('script')
 </body>
 </html>

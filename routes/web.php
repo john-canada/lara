@@ -91,7 +91,7 @@ Route::get('/posts',[
         'as'=>'postIndex'
 ]);
 
-Route::resource('posts','PostsController');
+Route::resource('posts','PostsController');//->middleware('checkuser');
 //Route::resource('Comment','CommentsController');
 
 Route::get('/commentindex/{id}',[
@@ -112,4 +112,9 @@ Route::post('/category',[
 Route::get('/category',[
     'uses'=>'CategoryController@index',
     'as'=>'category'
+]);
+
+Route::get('/displaycat/{id}',[
+    'uses'=>'PostsController@category',
+    'as'=>'displaycat'
 ]);

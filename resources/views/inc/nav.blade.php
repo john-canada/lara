@@ -21,7 +21,7 @@
                                 </li>
                              @if(!auth::guest())
                                <li class="nav-item">
-                                    <a class="nav-link" href="/posts/create">create post</a>
+                                    <a class="nav-link" href="/home">Profile</a>
                                 </li>
                               @endguest   
                     

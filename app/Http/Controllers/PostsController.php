@@ -31,14 +31,28 @@ class PostsController extends Controller
      */
     public function index()
     {
-      //$post=post::all()
-      //$post=DB::select('select * from post');
-      //$posts=Post::where('title','post one')->get();
-      //$posts=Post::orderBy('title','asc')->get();
-      // $posts=Post::orderBy('title','asc')->take(2)->get();
-      
+ 
+      $category=Category::with('posts')->orderBy('created_at','asc')->get(); 
       $posts=Post::orderBy('created_at','desc')->paginate(2);
-       return view('blog.index')->with('posts',$posts); 
+       return view('blog.index')->with(['posts'=>$posts,'category'=>$category]); 
+    }
+
+    public function category($id)
+    {
+      
+      $category=Category::with('posts')->orderBy('created_at','asc')->get();
+
+    //   \DB::enableQueryLog(); 
+    //     $posts=Post::orderBy('created_at','desc')
+    //         ->where('category_id',$id)
+    //         ->paginate(2);
+
+    $posts=Category::find($id)
+            ->posts()
+            ->orderBy('created_at','asc')
+            ->paginate(2);
+      return view('blog.index')->with(['posts'=>$posts,'category'=>$category]);//->render(); 
+   // dd(DB::getQueryLog()); 
     }
 
     /**
@@ -93,7 +107,13 @@ class PostsController extends Controller
            $post->user_id=auth()->user()->id; 
            $post->images=$fileNameToStore;
            $post->save();
-           $post->tags()->sync($request->tags,false);
+           //$post->tags()->sync($request->tags,false);
+           if(isset($request->tags)){
+            $post->tags()->sync($request->tags);
+           }else{
+            $post->tags()->sync(array());  
+           }
+           
            return redirect('/posts')->with('success','Post Created');
     }
 
