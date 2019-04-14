@@ -59,6 +59,6 @@
 
 <script type="text/javascript">
         $(document).ready(function() {
-        $('.select2-multiple').select2();
+        $(".select2-multiple").select2();
      });
 </script>

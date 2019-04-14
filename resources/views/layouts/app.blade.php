@@ -19,10 +19,8 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
     <style>
                     /**
             * The CSS shown here will not be introduced in the Quickstart guide, but shows
@@ -33,9 +31,9 @@
                   text-align:center;
                 }
 
-            .form-control{
+            /* .form-control{
                 border: 1px solid #444!important;
-            }
+            } */
 
             .StripeElement {
             box-sizing: border-box;
@@ -87,6 +85,7 @@
             @yield('content')
        </div>
        @yield('scripts-stripe')
+       @yield('script')
 
        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
     async defer></script>
@@ -100,6 +99,5 @@
  <footer  style="text-align:center">
      {{__('Copyright 2019 by John Canada - All rights reserved')}}
  </footer>    
-    @yield('script')
 </body>
 </html>
