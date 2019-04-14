@@ -8,16 +8,14 @@
 
    <h1 style="margin-top:60px;margin-bottom:30px">Create Posts</h1>
    {!! Form::open(['action' => 'PostsController@store','method'=>'POST','enctype'=>'multipart/form-data']) !!}
-
- <div class="row">
-   <div class="col-md-4">    
-    <div class="form-group">
-        {{Form::Label('title','Title')}}
-        {{Form::text('title','',['class'=>'form-control' ,'placeholder'=>'Title'])}}
-    </div>    
-   </div>
- </div>
-
+      <div class="row">
+        <div class="col-md-4">    
+          <div class="form-group">
+              {{Form::Label('title','Title')}}
+              {{Form::text('title','',['class'=>'form-control' ,'placeholder'=>'Title'])}}
+          </div>    
+        </div>
+      </div>
     <div class="form-group">
             {{Form::Label('body','Body')}}
             {{Form::textarea('body','',['id'=>'article-ckeditor','class'=>'form-control' ,'placeholder'=>'Body'])}}

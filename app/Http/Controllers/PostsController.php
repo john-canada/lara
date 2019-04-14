@@ -109,9 +109,9 @@ class PostsController extends Controller
            $post->save();
            //$post->tags()->sync($request->tags,false);
            if(isset($request->tags)){
-            $post->tags()->sync($request->tags);
-           }else{
-            $post->tags()->sync(array());  
+              $post->tags()->sync($request->tags);
+                 }else{
+              $post->tags()->sync(array());  
            }
            
            return redirect('/posts')->with('success','Post Created');
@@ -142,7 +142,20 @@ class PostsController extends Controller
             if(auth()->user()->id !== $post->user_id){
                return redirect('/posts')->with('error','Unauthorised page');
             }
-        return view('blog/edit')->with('post',$post);
+            $cat=array(); 
+            $categories = Category::all();
+              foreach($categories as $category){
+               $cat[$category->id]=$category->name;
+            }
+
+            $tag_array=array(); 
+            $tags = Tag::all();
+           
+            foreach($tags as $tag){
+               $tag_array[$tag->id]=$tag->name;
+            }
+
+        return view('blog/edit')->withPost($post)->withCategories($cat)->withTags($tag_array);
     }
 
     /**
@@ -175,15 +188,20 @@ class PostsController extends Controller
 
            // update posts
            $post=Post::find($id);
-           $post->title=$request->input('title');
-           $post->body=$request->input('body');
+           $post->title=$request->title;
+           $post->body=$request->body;
+           $post->category_id=$request->category_id;
            if($request->hasfile('image')){
              $post->images=$fileNameToStore;
            }
            $post->save();
-
-           return redirect('/posts')->with('success','Post Updated');
-    }
+            if(isset($request->tags)){
+               $post->tags()->sync($request->tags);
+                 }else{
+               $post->tags()->sync(array());
+           }
+         return redirect('/posts')->with('success','Post Updated');
+     }
 
     /**
      * Remove the specified resource from storage.

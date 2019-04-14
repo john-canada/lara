@@ -10,7 +10,7 @@
                 <div class="list-group">
                     <div class="row">
                         <div class="col-md-3 col-sm-3">
-                            <img with="150px" height="200px" src="/storage/images/{{$post->images}}">
+                            <img width="220px" height="220px" src="/storage/images/{{$post->images}}">
                         </div>
                         <div class="col-md-9 col-sm-9">
                             <h3><a href="/posts/{{$post->id}}">{{$post->title}}</a></h3>
