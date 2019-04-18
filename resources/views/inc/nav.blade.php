@@ -85,7 +85,14 @@
                                 <li class="nav-item">
                                         <a class="nav-link fas fa-cart-plus" href="{{ route('cart') }}">{{ __('') }}<span class="badge" style="background:orange">{{Session::has('cart')? Session::get('cart')->totalQTY : ''}}</span></a>
                                  </li>
+
+                            
                           </ul>
                       </div>
+                        <ul class="navbar-nav mr-auto custom-menu">
+                            <li class="nav-item">     
+                                 <button class="btn btn-primary menubutton">MENU</button>
+                              </li> 
+                      </ul> 
                   </div>
               </nav>

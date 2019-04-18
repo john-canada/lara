@@ -14,7 +14,9 @@
                         </div>
                     @endif
                    @if(auth()->user()->isAdmin == 1)
-                     <a href="{{url('/posts/create')}}">Create post</a>
+                     <p><a href="{{url('/posts/create')}}">Create post</a></p>
+                     <p><a href="{{url('/category')}}">Create Category</a></p>
+                     <p><a href="{{url('/tag')}}">Create tag</a></p>
                    @endif  
                    
                 </div>

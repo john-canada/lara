@@ -22,6 +22,75 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
+                  @media screen and (max-width: 767px) {
+                    .custom-menu{
+                       display: none;
+                     }
+                   }
+
+                        .menubutton{
+                            word-break: break-all;           
+                            font-family: raleway;
+                            border: 3px solid gold;
+                            width: 55px!important;
+                            height: 55px!important;
+                            font-size: 23px!important;
+                            line-height: .75!important;
+                            padding: 0px!important;
+                            border-radius: 7px;
+                            color:#grey;
+                            /* background: orange!important; */
+                            position: relative;
+                            -webkit-animation: mymove 5s infinite; /* Safari 4.0 - 8.0 */
+                            animation: mymove 5s infinite;
+                        }
+
+                        /* Safari 4.0 - 8.0*/
+                        @-webkit-keyframes mymove {
+                            0%   {top: 0px; left: 0px; background:skyblue;}
+                            50% {top: 0px; left: 0px; background:#3490dc;}
+                            100% {top: 0px; left: 0px; background:skyblue;}
+                        } 
+
+             
+                        /* Standard syntax */
+                        @keyframes mymove {
+                            0% {top: 0px; left: 0px; background:skyblue;}
+                           50% {top: 0px; left: 0px; background:#3490dc;} 
+                           100% {top: 0px; left: 0px; background:skyblue;}
+                      
+                        }
+
+                  
+
+                    /* rotate */
+                    .loader {
+                        border: 6px solid #f3f3f3;
+                        border-radius: 50%;
+                        border-top: 6px solid #3498db;
+                        border-bottom: 6px solid red;
+                        width: 50px;
+                        height: 50px;
+                        -webkit-animation: spin 3s linear infinite; /* Safari */
+                        animation: spin 3s linear infinite;
+                        margin:0 auto;
+                        cursor:pointer;
+                        margin-top:20px;
+                    }
+
+                    /* Safari */
+                    @-webkit-keyframes spin {
+                    0% { -webkit-transform: rotate(0deg); }
+                    100% { -webkit-transform: rotate(360deg); }
+                    }
+
+                    @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                    }
+
+                    /*end rotate*/
+
                     /**
             * The CSS shown here will not be introduced in the Quickstart guide, but shows
             * how you can use CSS to style your Element's container.
@@ -64,20 +133,10 @@
             background-color: #fefde5 !important;
             }
 
-        /* google maps  */
-
-         /* #map {
-        width: 100%;
-        height: 400px;
-        background-color: grey;
-      } */
-
-      .btn-primary {
-     margin-top: 20px;
-}
-
     </style>    
  @yield('stylesheet')
+ 
+
 </head>
 <body>
         @include('inc/nav')
@@ -96,8 +155,14 @@
      CKEDITOR.replace( 'article-ckeditor' );
  </script>
  <hr>
- <footer  style="text-align:center">
-     {{__('Copyright 2019 by John Canada - All rights reserved')}}
- </footer>    
+
+    <footer  style="text-align:center">
+            {{__('Copyright 2019 by John Canada - All rights reserved')}}
+     </footer> 
+ 
+    <div class="loader">
+            {{-- <img width="80" height="80" src="/storage/images/rotate-img.jpg">   --}}
+    </div>  
+           
 </body>
 </html>

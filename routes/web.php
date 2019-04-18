@@ -118,3 +118,38 @@ Route::get('/displaycat/{id}',[
     'uses'=>'PostsController@category',
     'as'=>'displaycat'
 ]);
+
+Route::post('/tag',[
+    'uses'=>'TagController@store',
+    'as'=>'tag'
+]);
+
+Route::get('/tag',[
+    'uses'=>'TagController@index',
+    'as'=>'tag'
+]);
+
+Route::get('/map',function(){
+
+    $config['center']='Agora Market Cagayan de Oro';
+
+    $config['zoom']='14';
+
+    $config['map_height']='500px';
+    
+    //$config['geocodeCaching']=true; //set caching full data from db
+
+    $config['scrollwheel']=false;
+
+    GMaps::initialize($config);
+
+    //create marker
+    $marker['position'] ='cdo market'; 
+    $marker['infowindow_content'] ='cdo market'; 
+    $marker['icon'] ='url';
+
+    GMaps::add_marker($marker);
+    $map = GMaps::create_map();
+
+    return view('pages.about')->with('map',$map);
+});

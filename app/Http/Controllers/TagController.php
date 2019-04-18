@@ -3,17 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Tag;
 
 class TagController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+    public function __construct()
+    {
+        $this->middleware('auth',['except'=>['create','edit','destroy','show','update']]);
+    }
+
     public function index()
     {
-        //
+        $tags = Tag::all();
+        return view('tags.tag')->with(['tags'=>$tags]);
     }
 
     /**
@@ -34,7 +37,14 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $this->validate($request,[
+           'name'=>'required|min:3'
+       ]);
+   
+       $tag= new Tag;
+        $tag->name=$request->name;
+        $tag->save();
+       return redirect()->back();
     }
 
     /**

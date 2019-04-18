@@ -25,7 +25,7 @@ class userTableSeeder extends Seeder
             'name'=>'Liza',
             'email'=>'licans@gmail.com',
             'password'=>bcrypt('user'),
-            'isAdmin' => '0',
+            'isAdmin' => '3',
             // 'created_at'=> Carbon::now()->format('Y-m-d','H:i:s'),
             // 'updated_at'=> Carbon::now()->format('Y-m-d','H:i:s')   
           ]
