@@ -17,7 +17,7 @@
                      <p><a href="{{url('/posts/create')}}">Create post</a></p>
                      <p><a href="{{url('/category')}}">Create Category</a></p>
                      <p><a href="{{url('/tag')}}">Create tag</a></p>
-                     <p><a href="{{url('user/export')}}">export user to excel</a></p>
+                     <p><a href="{{url('/export')}}">export user to excel</a></p>
                    @endif  
                    
                 </div>

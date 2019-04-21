@@ -169,3 +169,8 @@ Route::get('/user/export',[
     'uses'=>'exportController@export',
     'as'=>'user/export'
 ]);
+
+Route::post('/import',[
+    'uses'=>'exportController@import',
+    'as'=>'import'
+]);
