@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    //table name
+    //change table name
     Protected $table='posts';
     
-    // primary key
+    // change primary key
     public $primaryKey='id';
 
     // timestamp

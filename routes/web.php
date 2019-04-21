@@ -153,3 +153,19 @@ Route::get('/map',function(){
 
     return view('pages.about')->with('map',$map);
 });
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
+
+
+Route::get('/export',[
+    'uses'=>'exportController@index',
+    'as'=>'export'
+]);
+
+Route::get('/user/export',[
+    'uses'=>'exportController@export',
+    'as'=>'user/export'
+]);

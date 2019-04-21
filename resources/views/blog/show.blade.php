@@ -6,7 +6,7 @@
     {{Session::get('success')}}
 @endif
 
-  <a href="/posts" class="btn btn-primary">Go back</a><br><br>
+  <a href="/displaycat/{{$category->id}}" class="btn btn-primary mt-3">Go back</a><br><br>
   
    <img width="250" height="250" src="/storage/images/{{$post->images}}">
    <h3>{{$post->title}}</h3>

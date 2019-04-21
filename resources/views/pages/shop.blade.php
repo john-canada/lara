@@ -2,10 +2,10 @@
 @extends('layouts/app')
 @section('content')
 <h2 style="text-align:center;margin-top:50px;margin-bottom:40px ">{{__('Book Shopping')}}</h2>
-
-  @if(Session::has('success')) 
+  
+@if(Session::has('success')) 
      <div class="alert alert-success">{{__('Successfully Purchase')}}</div>   
-   @endif 
+  @endif 
 
 <div class="row">
     @foreach($products as $product)

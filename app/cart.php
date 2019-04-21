@@ -29,7 +29,6 @@ class cart{
      $this->items[$id]=$storedItems;
      $this->totalQTY++;
      $this->totalprice+=$item->price;
-
   }
 
   public function reduceByOne($id){

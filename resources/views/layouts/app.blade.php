@@ -160,8 +160,8 @@
             {{__('Copyright 2019 by John Canada - All rights reserved')}}
      </footer> 
  
-    <div class="loader">
-            {{-- <img width="80" height="80" src="/storage/images/rotate-img.jpg">   --}}
+    <div class="loader" style="width:50px;height:50px">
+            {{-- <img width="40" height="40" src="/storage/images/rotate-img.jpg">    --}}
     </div>  
            
 </body>

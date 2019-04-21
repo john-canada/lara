@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\product;
 use App\Order;
 use App\Cart;
+use App\subtract;
 use Session;
 use Mail;
 Use App\Mail\sendmail;
@@ -23,9 +24,11 @@ class productController extends Controller
    //   $this->middleware('auth');
   }
 
-
    public function product(){
 
+    // $mydata = new subtract();
+    // $data = $mydata->sub(5,5);
+    
       if(!Cache::has('product')){
          // $products = product::all();
               $products = product::all()->map(function($product){
@@ -43,7 +46,7 @@ class productController extends Controller
           $products = Cache::get('product',product::all());
           }
      //  dd($products);
-      return view('pages/shop')->with('products',$products);
+      return view('pages/shop')->with(['products'=>$products]);
    }
 
    public function getcart(){
@@ -156,6 +159,12 @@ class productController extends Controller
     return redirect()->route('cart');
  }
 
-}
+ function getdata(){
+    $mydata = new subtract();
+    $data=$mydata->sub(10,2);
+    return redirect('shop')->with('data',$data);
+ }
+
+}//end of class
 
 

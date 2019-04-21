@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-header">Dashboard</div>
 
-                <div class="card-body">
+                  <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -29,20 +29,15 @@
                                     <th>{{$post->title}}</th> 
                                     <th><a href="/posts/{{$post->id}}/edit" class="btn btn-primary">Edit</a></th>
                                     <th>
-
                                         {!!Form::open(['action'=>['PostsController@destroy',$post->id], 'method'=>'POST', 'class'=>'pull-right'])!!}
-                                        {{Form::hidden('_method','Delete')}}
-                                        {{Form::submit('Delete',['class'=>'btn btn-danger'])}}
-                                      {!!Form::close()!!}
-
+                                          {{Form::hidden('_method','Delete')}}
+                                          {{Form::submit('Delete',['class'=>'btn btn-danger'])}}
+                                        {!!Form::close()!!}
                                     </th>
-                                  
                                 </tr>
                                 @endforeach
 
-                        </table>   
-                     
-               
+                        </table>    
                 </div>
             </div>
         </div>
